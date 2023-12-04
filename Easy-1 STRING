@@ -1,0 +1,20 @@
+class Solution:
+    def lengthOfLastWord(self, s: str) -> int:
+        # Initialize a variable to store the length of the last word
+        length = 0
+        
+        # Remove leading and trailing whitespaces from the input string
+        s = s.strip()
+        
+        # Iterate over the characters of the string in reverse order
+        for i in range(len(s)-1, -1, -1):
+            # Check if the current character is a space
+            if s[i] == ' ':
+                # If a space is encountered, it means the last word has ended, so break out of the loop
+                break
+            else:
+                # If a non-space character is encountered, increment the length
+                length += 1
+        
+        # Return the length of the last word
+        return length
