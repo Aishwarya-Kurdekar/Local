@@ -1,20 +1,20 @@
 class Solution:
-    def majorityElement(self, nums: list[int]) -> list[int]:
-        #  Use Counter to count occurrences of each element in the input list
-        element_count = Counter(nums)
+    def majorityElement(self, nums: List[int]) -> List[int]:
+        # Use Counter to count occurrences of each element in the list
+        count = Counter(nums)
         
-        #  Initialize an empty list to store majority elements
-        majority_elements = []
+        # Initialize an empty list to store the majority elements
+        ans = []
         
-        # Determine the threshold for majority (more than n/3 occurrences)
-        threshold = len(nums) // 3
+        # Get the length of the input list
+        n = len(nums)
         
-        # Iterate through the counted elements
-        for element, count in element_count.items():
-            #  Check if the count exceeds the threshold
-            if count > threshold:
-                #  If so, add the element to the majority elements list
-                majority_elements.append(element)
+        # Iterate through the counts of each unique element
+        for key, value in count.items():
+            # Check if the count is greater than (n // 3)
+            if value > (n // 3):
+                # If the count is greater, add the element to the result list
+                ans.append(key)
         
-        #  Return the list of majority elements
-        return majority_elements
+        # Return the list of majority elements
+        return ans
