@@ -1,0 +1,37 @@
+class Solution:
+    def shortestPalindrome(self, s: str) -> str:
+        # Initialize constants for hashing
+        base = 131
+        mod = 10**9 + 7
+        
+        # Get the length of the input string
+        n = len(s)
+        
+        # Initialize variables for prefix and suffix hash values, multiplier, and index
+        prefix = suffix = 0
+        mul = 1
+        idx = 0
+        
+        # Iterate through the characters of the input string
+        for i, c in enumerate(s):
+            #  Update prefix hash value
+            prefix = (prefix * base + (ord(c) - ord('a') + 1)) % mod
+            
+            # Update suffix hash value
+            suffix = (suffix + (ord(c) - ord('a') + 1) * mul) % mod
+            
+            #  Update multiplier for hashing
+            mul = (mul * base) % mod
+            
+            # Check if prefix and suffix are equal, update index
+            if prefix == suffix:
+                idx = i + 1
+        
+        #  Check if the input string is already a palindrome
+        # If so, return the string as is
+        if idx == n:
+            return s
+        #  If not a palindrome, construct the shortest palindrome by
+        # reversing the remaining part of the string and appending it to the original string
+        else:
+            return s[idx:][::-1] + s
